@@ -1,0 +1,97 @@
+.blogPostForm {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: #333;
+}
+
+/* Form Group */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.formGroup label {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #333; /* PDF: labels #333 on light background */
+}
+
+/* Inputs + Textarea */
+.formGroup input,
+.formGroup textarea {
+  padding: 12px;
+  font-size: 16px; /* closer to spec */
+  border: 1px solid #ccc; /* light gray border */
+  border-radius: 4px; /* PDF says slightly rounded corners */
+  background-color: #ffffff; /* light theme: white fields */
+  color: #333; /* dark text */
+}
+
+textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+/* Clear focus state for accessibility */
+.formGroup input:focus,
+.formGroup textarea:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* Error Messages */
+.error {
+  color: #ff0000; /* closer to spec red */
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+/* Submit button */
+button {
+  align-self: flex-end;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #006be6;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  button {
+    width: 100%;
+  }
+}
+
+/* DESKTOP: 2-column layout (1200px and above) */
+@media (min-width: 1200px) {
+  .formGroup {
+    display: grid;
+    grid-template-columns: 200px 1fr; /* label left, input right */
+    align-items: center; /* vertically align inputs nicely */
+    column-gap: 20px; /* spacing between label and input */
+  }
+
+  .formGroup label {
+    margin-bottom: 0; /* since labels sit beside inputs now */
+    text-align: right; /* align labels to the right */
+    font-size: 16px;
+  }
+
+  .formGroup input,
+  .formGroup textarea {
+    width: 100%;
+  }
+}

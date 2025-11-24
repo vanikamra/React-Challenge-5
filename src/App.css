@@ -1,0 +1,42 @@
+#root { /* Root container styles */ /* root is the main div */
+  max-width: 1280px; /* Maximum width */
+  margin: 0 auto; /* Center horizontally */
+  padding: 2rem; /* Padding around content */
+  text-align: center; /* Center text */
+}
+
+.logo { /* Logo styles */
+  height: 6em; /* Height of logo */ /* 6em means 6 times the current font size */
+  padding: 1.5em; /* Padding around logo */
+  will-change: filter; /* will change filter for performance optimization */ /* indicates that the filter property is likely to change */
+  transition: filter 300ms; /* Smooth transition for filter changes over 300 milliseconds */
+}
+.logo:hover { /* Hover effect for logo */
+  filter: drop-shadow(0 0 2em #646cffaa); /* Drop shadow effect on hover */ /* drop-shadow(0 0 2em #646cffaa) means shadow with no offset and light blur with color #646cffaa */
+}
+.logo.react:hover { /* Hover effect for React logo */
+  filter: drop-shadow(0 0 2em #61dafbaa); /* Drop shadow effect on hover */ /* drop-shadow(0 0 2em #61dafbaa) means shadow with no offset and light blur with color #61dafbaa */
+}
+
+@keyframes logo-spin { /* Keyframes for logo spin animation */
+  from { /* From state */
+    transform: rotate(0deg); /* No rotation */
+  }
+  to { /* To state */
+    transform: rotate(360deg); /* Full rotation */
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) { /* If user has no preference for reduced motion */
+  a:nth-of-type(2) .logo { /* Second link's logo */
+    animation: logo-spin infinite 20s linear; /* Infinite spin animation over 20 seconds */ /* linear means constant speed */
+  }
+}
+
+.card { /* Card styles */
+  padding: 2em; /* Padding inside the card */
+}
+
+.read-the-docs { /* Read the docs link styles */
+  color: #888; /* Gray color */
+}

@@ -1,0 +1,67 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent backdrop */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.dialog {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%; /* On mobile, almost full width */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dialog h2 {
+  margin: 0 0 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.dialog p {
+  margin: 0 0 30px;
+  font-size: 16px;
+  color: #666666;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.buttons button {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.buttons button:first-of-type {
+  background-color: #cccccc; /* Cancel */
+  color: #000000;
+}
+
+.buttons button:last-of-type {
+  background-color: #ff0000; /* Delete */
+  color: #ffffff;
+}
+
+.buttons button:focus-visible {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+@media (max-width: 768px) {
+  .buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px;              /* Smaller gap per spec */
+  }
+}

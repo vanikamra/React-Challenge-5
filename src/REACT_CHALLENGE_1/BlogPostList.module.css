@@ -1,0 +1,25 @@
+.blogPostList { /* Container for list of blog posts */
+  display: grid; /* Use CSS Grid, grid is a layout system */
+  gap: 20px; /* Gap between items */
+}
+
+/* Mobile: single column */
+@media (max-width: 768px) { /* For screens up to 768px wide */
+  .blogPostList { /* Container for list of blog posts */
+    grid-template-columns: 1fr; /* Single column layout, 1fr means one fraction of available space */
+  }
+}
+
+/* Tablet: two columns */
+@media (min-width: 769px) and (max-width: 1199px) /* For screens between 769px and 1199px wide */ {
+  .blogPostList { /* Container for list of blog posts */
+    grid-template-columns: repeat(2, 1fr); /* Two column layout, repeat(2, 1fr) means two columns each taking one fraction of available space */
+  }
+}
+
+/* Desktop: three columns */
+@media (min-width: 1200px) { /* For screens 1200px wide and above */
+  .blogPostList { /* Container for list of blog posts */
+    grid-template-columns: repeat(3, 1fr); /* Three column layout, repeat(3, 1fr) means three columns each taking one fraction of available space */
+  }
+}

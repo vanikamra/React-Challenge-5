@@ -1,0 +1,40 @@
+.blogPostItem { /* Container styles */
+  background: #ffffff; /* White background */
+  border: 1px solid #dddddd; /* Light gray border */
+  padding: 20px; /* Padding inside the container */
+  border-radius: 6px; /* Rounded corners */
+  font-family: Arial, sans-serif; /* Font family */
+}
+
+.title { /* Title styles */
+  font-size: 24px; /* Font size */
+  font-weight: bold; /* Bold text */
+  margin: 0; /* No margin */
+}
+.titleLink { /* Link styles */
+  text-decoration: none; /* No underline */
+  color: #333333; /* Dark gray color */
+}
+
+.titleLink:hover { /* Hover effect for link */
+  color: #007bff; /* Blue color on hover */
+}
+
+.summary { /* Summary styles */
+  font-size: 16px; /* Font size */
+  color: #666666; /* Medium gray color */
+  margin-top: 10px; /* Margin above summary */
+}
+
+.date { /* Date styles */
+  font-size: 14px; /* Font size */
+  color: #999999; /* Light gray color */
+  margin-top: 8px; /* Margin above date */
+}
+
+.blogPostList { /* Container for list of blog posts */
+  display: grid; /* Use CSS Grid */ /* Layout as grid */
+  gap: 20px; /* Gap between items */
+}
+
+
