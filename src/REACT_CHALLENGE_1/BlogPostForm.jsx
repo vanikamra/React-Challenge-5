@@ -9,27 +9,39 @@ export default function BlogPostForm({ post, onSubmit }) {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  
+  useEffect(() => {
+    if (post) {
+      setTitle(post.title || "");
+      setContent(post.content || "");
+      setAuthor(post.author || "");
+      setDate(post.date || "");
+    }
+  }, [post]);
 
   function handleSubmit(e) {
     e.preventDefault();
 
     const newErrors = {};
-    if (!title) newErrors.title = "Required";
-    if (!content) newErrors.content = "Required";
-    if (!author) newErrors.author = "Required";
+    if (!title.trim()) newErrors.title = "Required";
+    if (!content.trim()) newErrors.content = "Required";
+    if (!author.trim()) newErrors.author = "Required";
     if (!date) newErrors.date = "Required";
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
+
     setIsSubmitting(true);
     onSubmit({ title, content, author, date });
     setIsSubmitting(false);
   }
 
+  const isEditMode = Boolean(post);
+
   return (
-    <form className={styles.blogPostForm} onSubmit={handleSubmit}>
+    <form className={styles.blogPostForm} onSubmit={handleSubmit} noValidate>
       {/* TITLE */}
       <div className={styles.formGroup}>
         <label htmlFor="title">Title</label>
@@ -49,7 +61,6 @@ export default function BlogPostForm({ post, onSubmit }) {
         )}
       </div>
 
-
       {/* CONTENT */}
       <div className={styles.formGroup}>
         <label htmlFor="content">Content</label>
@@ -57,8 +68,14 @@ export default function BlogPostForm({ post, onSubmit }) {
           id="content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
+          aria-invalid={!!errors.content}
+          aria-describedby={errors.content ? "content-error" : undefined}
         />
-        {errors.content && <p className={styles.error}>{errors.content}</p>}
+        {errors.content && (
+          <p id="content-error" className={styles.error} role="alert">
+            {errors.content}
+          </p>
+        )}
       </div>
 
       {/* AUTHOR */}
@@ -68,8 +85,14 @@ export default function BlogPostForm({ post, onSubmit }) {
           id="author"
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
+          aria-invalid={!!errors.author}
+          aria-describedby={errors.author ? "author-error" : undefined}
         />
-        {errors.author && <p className={styles.error}>{errors.author}</p>}
+        {errors.author && (
+          <p id="author-error" className={styles.error} role="alert">
+            {errors.author}
+          </p>
+        )}
       </div>
 
       {/* DATE */}
@@ -80,18 +103,25 @@ export default function BlogPostForm({ post, onSubmit }) {
           id="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
+          aria-invalid={!!errors.date}
+          aria-describedby={errors.date ? "date-error" : undefined}
         />
-        {errors.date && <p className={styles.error}>{errors.date}</p>}
+        {errors.date && (
+          <p id="date-error" className={styles.error} role="alert">
+            {errors.date}
+          </p>
+        )}
       </div>
 
       <button type="submit" disabled={isSubmitting}>
         {isSubmitting
-          ? "Submitting..."
-          : post
-            ? "Update Post"
-            : "Create Post"}
+          ? isEditMode
+            ? "Updating..."
+            : "Submitting..."
+          : isEditMode
+          ? "Update Post"
+          : "Create Post"}
       </button>
-
     </form>
   );
 }

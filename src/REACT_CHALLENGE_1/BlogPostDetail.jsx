@@ -68,7 +68,7 @@ export default function BlogPostDetail({ id, title, content, author, date, onDel
         <DeleteButton
           onClick={handleOpenDialog}
           disabled={isDeleting}
-          ref={deleteButtonRef} // NEW
+          ref={deleteButtonRef} 
         />
       </div>
 

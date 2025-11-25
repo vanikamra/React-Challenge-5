@@ -1,9 +1,8 @@
-import { Routes, Route, useParams, useNavigate } from "react-router-dom";
+import { Routes, Route, useParams, useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import BlogPostList from "./REACT_CHALLENGE_1/BlogPostList.jsx";
 import BlogPostDetail from "./REACT_CHALLENGE_1/BlogPostDetail.jsx";
-import BlogPostForm from "./REACT_CHALLENGE_1/BlogPostForm.jsx"; 
-
+import BlogPostForm from "./REACT_CHALLENGE_1/BlogPostForm.jsx";
 
 const initialPosts = [
   {
@@ -50,13 +49,12 @@ const initialPosts = [
 function App() {
   const [posts, setPosts] = useState(initialPosts);
 
+  // remove post from state
   function handleDeletePost(idToDelete) {
     setPosts((prevPosts) => prevPosts.filter((post) => post.id !== idToDelete));
   }
 
-
-
-    function BlogPostDetailRoute() {
+  function BlogPostDetailRoute() {
     const { id } = useParams();
     const navigate = useNavigate();
     const post = posts.find((p) => p.id === id);
@@ -65,13 +63,20 @@ function App() {
       return <p>Blog post not found.</p>;
     }
 
+    
     function handleDeleteAndNavigate(postId) {
-      handleDeletePost(postId);
-      navigate("/"); // go back to the list after deleting
+      handleDeletePost(postId);   // remove from state
+      navigate("/");              // redirect back to list
     }
 
     return (
-      <>
+      <div
+        style={{
+          maxWidth: "800px",
+          margin: "60px auto",
+          padding: "20px",
+        }}
+      >
         <BlogPostDetail
           id={post.id}
           title={post.title}
@@ -80,14 +85,13 @@ function App() {
           date={post.date}
           onDelete={handleDeleteAndNavigate}
         />
+
         <p style={{ marginTop: "1rem" }}>
-          <a href={`/posts/${post.id}/edit`}>Edit this post</a>
+          <Link to={`/posts/${post.id}/edit`}>Edit this post</Link>
         </p>
-      </>
+      </div>
     );
   }
-
-
 
   function NewPostRoute() {
     const navigate = useNavigate();
@@ -95,6 +99,7 @@ function App() {
     function handleCreate(formData) {
       const newId = Date.now().toString();
 
+      
       const plainContent = formData.content.replace(/<[^>]+>/g, "");
       const summary =
         plainContent.length > 100
@@ -118,7 +123,7 @@ function App() {
     return (
       <div
         style={{
-          maxWidth: "700px",
+          maxWidth: "800px",
           margin: "60px auto",
           padding: "20px",
         }}
@@ -127,7 +132,7 @@ function App() {
           style={{
             fontSize: "32px",
             fontWeight: "700",
-            color: "white",
+            color: "#333333",
             marginBottom: "30px",
           }}
         >
@@ -169,7 +174,7 @@ function App() {
     return (
       <div
         style={{
-          maxWidth: "700px",
+          maxWidth: "800px",
           margin: "60px auto",
           padding: "20px",
         }}
@@ -178,7 +183,7 @@ function App() {
           style={{
             fontSize: "32px",
             fontWeight: "700",
-            color: "white",
+            color: "#333333",
             marginBottom: "30px",
           }}
         >
@@ -190,7 +195,6 @@ function App() {
     );
   }
 
-  
   return (
     <Routes>
       <Route path="/" element={<BlogPostList posts={posts} />} />

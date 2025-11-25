@@ -43,6 +43,7 @@
   border-radius: 4px;
   border: none;
   cursor: pointer;
+  min-height: 44px; /* good tap size for mobile */
 }
 
 .buttons button:first-of-type {
@@ -59,9 +60,29 @@
   outline: 2px solid #007bff;
   outline-offset: 2px;
 }
+.buttons button:first-of-type {
+  background-color: #cccccc; /* Cancel */
+  color: #000000;
+}
+
+/* Cancel hover */
+.buttons button:first-of-type:hover:not(:disabled) {
+  background-color: #b3b3b3; /* slightly darker gray */
+}
+
+.buttons button:last-of-type {
+  background-color: #ff0000; /* Delete */
+  color: #ffffff;
+}
+
+/* Delete hover */
+.buttons button:last-of-type:hover:not(:disabled) {
+  background-color: #cc0000; /* slightly darker red */
+}
+
 @media (max-width: 768px) {
   .buttons {
     flex-direction: column; /* Stack buttons vertically */
-    gap: 10px;              /* Smaller gap per spec */
+    gap: 10px;              /* smaller gap on mobile */
   }
 }

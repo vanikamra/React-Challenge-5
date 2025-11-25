@@ -34,11 +34,11 @@ export default function ConfirmationDialog({
       if (!first || !last) return;
 
       if (!e.shiftKey && document.activeElement === last) {
-        // Tab from last -> loop back to first
+        // Tab from last; loop back to first
         e.preventDefault();
         first.focus();
       } else if (e.shiftKey && document.activeElement === first) {
-        // Shift+Tab from first -> loop to last
+        // Shift and Tab from first; loop to last
         e.preventDefault();
         last.focus();
       }
@@ -62,7 +62,7 @@ export default function ConfirmationDialog({
         aria-describedby="dialog-description"
         ref={dialogRef}
         tabIndex="-1"
-        onClick={(e) => e.stopPropagation()} // don't close when clicking inside
+        onClick={(e) => e.stopPropagation()} 
         onKeyDown={handleKeyDown}
       >
         <h2 id="dialog-title">Confirm Deletion</h2>

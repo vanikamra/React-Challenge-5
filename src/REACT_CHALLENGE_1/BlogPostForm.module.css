@@ -1,36 +1,39 @@
 .blogPostForm {
-  max-width: 700px;
+  max-width: 800px;              
   margin: 40px auto;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  color: #333;
+  color: #333333;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 }
 
 /* Form Group */
 .formGroup {
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;           
 }
 
 /* Labels */
 .formGroup label {
   font-size: 16px;
   font-weight: 500;
-  margin-bottom: 8px;
-  color: #333; /* PDF: labels #333 on light background */
+  margin-bottom: 10px;          
+  color: #333333; /* labels */
 }
 
-/* Inputs + Textarea */
+/* Inputs and Textarea */
 .formGroup input,
 .formGroup textarea {
   padding: 12px;
-  font-size: 16px; /* closer to spec */
-  border: 1px solid #ccc; /* light gray border */
-  border-radius: 4px; /* PDF says slightly rounded corners */
-  background-color: #ffffff; /* light theme: white fields */
-  color: #333; /* dark text */
+  font-size: 16px;
+  border: 1px solid #cccccc;     /* light gray border */
+  border-radius: 4px;            /* slight rounding per spec */
+  background-color: #ffffff;
+  color: #333333;
+  box-sizing: border-box;
 }
 
 textarea {
@@ -38,55 +41,90 @@ textarea {
   resize: vertical;
 }
 
-/* Clear focus state for accessibility */
+/* Focus state for accessibility */
 .formGroup input:focus,
 .formGroup textarea:focus {
-  outline: 2px solid #007bff;
-  outline-offset: 2px;
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
 }
 
 /* Error Messages */
 .error {
-  color: #ff0000; /* closer to spec red */
+  color: #ff0000;                /* red errors */
   font-size: 14px;
   margin-top: 6px;
 }
 
-/* Submit button */
-button {
+/* Submit button: inside the blog post form */
+.blogPostForm button {
   align-self: flex-end;
   padding: 12px 24px;
-  background-color: #007bff;
-  color: white;
+  background-color: #007bff;      /* primary blue */
+  color: #ffffff;                 /* white text */
   border: none;
   font-size: 16px;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-button:hover {
+/* Hover state when active */
+.blogPostForm button:not(:disabled):hover {
   background-color: #006be6;
 }
 
+/* Disabled state */
+.blogPostForm button:disabled {
+  background-color: #f5f5f5;      /* light gray, visible on white page */
+  color: #999999;                 /* medium gray text */
+  border: 1px solid #e0e0e0;
+  cursor: default;
+}
+
+/* Override to ensure specificity */
+.blogPostForm button:not(:disabled) {
+  background-color: #007bff !important;
+  color: #ffffff !important;
+}
+
+/* hover darkens */
+.blogPostForm button:not(:disabled):hover {
+  background-color: #006be6 !important;
+}
+
+
 /* Mobile */
 @media (max-width: 600px) {
+  .formGroup label {
+    font-size: 14px;             /*14px on mobile */
+  }
+
+  .formGroup input,
+  .formGroup textarea {
+    font-size: 14px;             /* 14px on mobile */
+  }
+
+  .error {
+    font-size: 12px;             /* slightly smaller on mobile */
+  }
+
   button {
-    width: 100%;
+    width: 100%;                 /* full-width submit on mobile */
   }
 }
 
-/* DESKTOP: 2-column layout (1200px and above) */
+/* Desktop: 2-column layout (1200px and above) */
 @media (min-width: 1200px) {
   .formGroup {
     display: grid;
     grid-template-columns: 200px 1fr; /* label left, input right */
-    align-items: center; /* vertically align inputs nicely */
-    column-gap: 20px; /* spacing between label and input */
+    align-items: center;
+    column-gap: 20px;
   }
 
   .formGroup label {
-    margin-bottom: 0; /* since labels sit beside inputs now */
-    text-align: right; /* align labels to the right */
+    margin-bottom: 0;            /* side-by-side, so no vertical gap */
+    text-align: right;
     font-size: 16px;
   }
 

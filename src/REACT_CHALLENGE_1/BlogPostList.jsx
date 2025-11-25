@@ -9,12 +9,11 @@ export default function BlogPostList({ posts }) {
 
   return (
     <>
-      {/* ⭐ ADD THIS OUTSIDE THE BLOGPOSTLIST CONTAINER */}
       <p style={{ margin: "20px" }}>
         <Link to="/posts/new">Create New Post</Link>
       </p>
 
-      {/* ⭐ Your original container */}
+      {/* original container */}
       <div className={styles.blogPostList}>
         {posts.map((post) => (
           <BlogPostItem
