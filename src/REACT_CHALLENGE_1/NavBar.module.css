@@ -62,7 +62,9 @@
 /* MOBILE */
 @media (max-width: 768px) {
   .navBar {
-    padding: 0 0.75rem;
+    /* more left padding, less right padding */
+    padding-left: 1rem;
+    padding-right: 0 ;
   }
 
   .links {
@@ -108,5 +110,15 @@
 
   .hamburger {
     margin-left: auto !important;
+  }
+}
+@media (max-width: 480px) {
+  .navBar {
+    padding-right: 0 !important;
+  }
+
+  .hamburger {
+    padding: 0 !important;
+    padding-right: 4px; /* tiny edge spacing */
   }
 }

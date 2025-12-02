@@ -2,6 +2,9 @@ import React, { useState, useRef } from "react"; // Import useState for local co
 import styles from "./BlogPostDetail.module.css";
 import DeleteButton from "./DeleteButton.jsx"; // New Delete button component
 import ConfirmationDialog from "./ConfirmationDialog.jsx"; // New confirmation dialog component
+import CommentList from "./CommentList.jsx";   // 
+import CommentForm from "./CommentForm.jsx";   //
+
 
 // BlogPostDetail receives id and onDelete from the parent
 export default function BlogPostDetail({ id, title, content, author, date, onDelete }) {
@@ -14,6 +17,28 @@ export default function BlogPostDetail({ id, title, content, author, date, onDel
 
   // Ref to restore focus to the Delete button after closing dialog
   const deleteButtonRef = useRef(null);
+
+  //  State for comments on this blog post
+  const [comments, setComments] = useState([]);
+
+  const isLoggedIn = true;
+  const userName = "Vani Kamra";
+
+
+  //  Handler to add a new comment
+  function handleAddComment({ name, text }) {
+    const newComment = {
+      id: Date.now().toString(),  // simple unique id
+      name,
+      text,
+      date: new Date(),           // will be formatted in Comment component
+      avatar: null,
+    };
+
+    // Append to keep most recent at the bottom 
+    setComments((prevComments) => [...prevComments, newComment]);
+  }
+
 
   if (!title || !content || !author || !date) {
     return <p>Blog post not found.</p>;
@@ -63,12 +88,21 @@ export default function BlogPostDetail({ id, title, content, author, date, onDel
         dangerouslySetInnerHTML={{ __html: content }}
       />
 
+      {/* Comments Section */}
+      <CommentList comments={comments} />
+      <CommentForm
+        onSubmit={handleAddComment}
+        isLoggedIn={isLoggedIn}
+        userName={userName}
+      />
+
+
       {/* Delete Button */}
       <div className={styles.actions}>
         <DeleteButton
           onClick={handleOpenDialog}
           disabled={isDeleting}
-          ref={deleteButtonRef} 
+          ref={deleteButtonRef}
         />
       </div>
 
