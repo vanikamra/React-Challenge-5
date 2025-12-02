@@ -5,7 +5,7 @@ export default function Comment({ name, date, text, avatar }) {
   // Ensure date is a Date object
   const dateObj = date instanceof Date ? date : new Date(date);
 
-  // Format date per spec
+  // Format date
   const displayDate = dateObj.toLocaleString("en-US", {
     month: "long",
     day: "numeric",
@@ -17,7 +17,7 @@ export default function Comment({ name, date, text, avatar }) {
   return (
     <article className="comment">
 
-      {/* Avatar block (only render if avatar exists) */}
+      {/* Avatar block */}
       {avatar && (
         <div className="comment__avatar-wrapper">
           <img

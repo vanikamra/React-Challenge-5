@@ -1,7 +1,7 @@
-import React, { useState, useRef } from "react"; // Import useState for local component state
+import React, { useState, useRef } from "react"; 
 import styles from "./BlogPostDetail.module.css";
-import DeleteButton from "./DeleteButton.jsx"; // New Delete button component
-import ConfirmationDialog from "./ConfirmationDialog.jsx"; // New confirmation dialog component
+import DeleteButton from "./DeleteButton.jsx"; 
+import ConfirmationDialog from "./ConfirmationDialog.jsx"; 
 import CommentList from "./CommentList.jsx";   // 
 import CommentForm from "./CommentForm.jsx";   //
 

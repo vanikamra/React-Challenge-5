@@ -8,7 +8,7 @@
 
   display: flex;
   align-items: center;
-  justify-content: flex-start;   /* children flow left → right */
+  justify-content: flex-start;   /* children flow left  to right */
 
   padding: 0 1.5rem;
 
@@ -18,7 +18,7 @@
   z-index: 1000;
 }
 
-/* LOGO — left side */
+/* Logo — left side */
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
@@ -26,7 +26,7 @@
   color: white;
 }
 
-/* DESKTOP LINKS — pushed to the right */
+/* Desktop links — pushed to the right */
 .links {
   display: flex;
   gap: 1.25rem;
@@ -44,7 +44,7 @@
   text-decoration: underline;
 }
 
-/* HAMBURGER — hidden on desktop */
+/* Hamburger — hidden on desktop */
 .hamburger {
   display: none;
   background: none;
@@ -59,7 +59,7 @@
   display: none;
 }
 
-/* MOBILE */
+/* mobile */
 @media (max-width: 768px) {
   .navBar {
     /* more left padding, less right padding */
@@ -102,7 +102,7 @@
   }
 }
 
-/* EXTRA SAFETY for narrow screens */
+
 @media (max-width: 600px) {
   .navBar {
     justify-content: flex-start !important;

@@ -2,7 +2,7 @@ import React from "react";
 import Comment from "./Comment";
 
 export default function CommentList({ comments }) {
-  // Handle "no comments yet" case
+
   if (!comments || comments.length === 0) {
     return (
       <section className="comments-section" aria-label="Comments">
