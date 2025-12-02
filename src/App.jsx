@@ -3,6 +3,7 @@ import { useState } from "react";
 import BlogPostList from "./REACT_CHALLENGE_1/BlogPostList.jsx";
 import BlogPostDetail from "./REACT_CHALLENGE_1/BlogPostDetail.jsx";
 import BlogPostForm from "./REACT_CHALLENGE_1/BlogPostForm.jsx";
+import Layout from "./REACT_CHALLENGE_1/Layout.jsx";
 
 const initialPosts = [
   {
@@ -196,13 +197,16 @@ function App() {
   }
 
   return (
-    <Routes>
-      <Route path="/" element={<BlogPostList posts={posts} />} />
-      <Route path="/posts/new" element={<NewPostRoute />} />
-      <Route path="/posts/:id" element={<BlogPostDetailRoute />} />
-      <Route path="/posts/:id/edit" element={<EditPostRoute />} />
-    </Routes>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<BlogPostList posts={posts} />} />
+        <Route path="/posts/new" element={<NewPostRoute />} />
+        <Route path="/posts/:id" element={<BlogPostDetailRoute />} />
+        <Route path="/posts/:id/edit" element={<EditPostRoute />} />
+      </Routes>
+    </Layout>
   );
 }
 
 export default App;
+

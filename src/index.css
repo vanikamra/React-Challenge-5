@@ -1,3 +1,13 @@
+/* RESET ALL DEFAULT CENTERING BEHAVIOR */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: block !important;
+}
+
+
 :root { /* Root styles */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; /* Font family */
   line-height: 1.5; /* Line height */
@@ -10,7 +20,7 @@
   font-synthesis: none; /* Disable font synthesis */
   text-rendering: optimizeLegibility; /* Optimize text rendering */
   -webkit-font-smoothing: antialiased; /* Smooth font on WebKit browsers */
-  -moz-osx-font-smoothing: grayscale; /* Smooth font on Firefox for macOS */
+  -moz-osx-font-smoothing: grayscale; /* Smooth font for macOS */
 }
 
 a {
@@ -22,12 +32,10 @@ a:hover { /* Hover effect for links */
   color: #535bf2; /* Darker blue on hover */
 }
 
-body { /* Body styles */
-  margin: 0; /* No margin */
-  display: flex; /* Use flexbox, display means how to display an element, flex means flexible box layout */
-  place-items: center; /* Center items both vertically and horizontally */
-  min-width: 320px; /* Minimum width */
-  min-height: 100vh; /* Minimum height: 100% of viewport height */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
 }
 
 h1 { /* Heading 1 styles */
@@ -38,23 +46,23 @@ h1 { /* Heading 1 styles */
 button { /* Button styles */
   border-radius: 8px; /* Rounded corners */
   border: 1px solid transparent; /* Transparent border */
-  padding: 0.6em 1.2em; /* Padding inside button  0.6em top/bottom and 1.2em left/right */
-  font-size: 1em; /* Font size  em means relative to the font size of the parent element */
+  padding: 0.6em 1.2em; /* Padding inside button */
+  font-size: 1em; /* Font size */
   font-weight: 500; /* Font weight */
-  font-family: inherit; /* Inherit font family from parent */
+  font-family: inherit; /* Inherit font family */
   background-color: #1a1a1a; /* Dark background */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: border-color 0.25s; /* Smooth transition for border color over 0.25 seconds */
+  cursor: pointer; /* Pointer cursor */
+  transition: border-color 0.25s; /* Smooth transition */
 }
 button:hover { /* Hover effect for button */
-  border-color: #646cff; /* Change border color on hover */
+  border-color: #646cff; /* Change border color */
 }
-button:focus, /* Focus effect for button */
+button:focus,
 button:focus-visible { /* Focus-visible effect for button */
   outline: 4px auto -webkit-focus-ring-color; /* Outline for accessibility */
 }
 
-@media (prefers-color-scheme: light) { /* If user prefers light color scheme */
+@media (prefers-color-scheme: light) { /* If user prefers light scheme */
   :root { /* Root styles for light mode */
     color: #213547; /* Dark text color */
     background-color: #ffffff; /* Light background color */
