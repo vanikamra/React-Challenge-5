@@ -1,11 +1,12 @@
 import React from "react";
 import NavBar from "./NavBar";
 import styles from "./Layout.module.css";
-export default function Layout({ children }) {
+
+export default function Layout({ children, onSearch }) {
   return (
     <div className={styles.layout}>
       <header className={styles.header}>
-        <NavBar />
+        <NavBar onSearch={onSearch} />
       </header>
 
       <main className={styles.main}>{children}</main>

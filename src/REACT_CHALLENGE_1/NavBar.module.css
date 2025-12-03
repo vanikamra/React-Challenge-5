@@ -1,14 +1,17 @@
+.navWrapper {
+  position: relative; /* allows mobile search bar to sit below */
+}
+
 .navBar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
 
-  height: 60px;
-
+  min-height: 60px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;   /* children flow left  to right */
+  justify-content: flex-start;
 
   padding: 0 1.5rem;
 
@@ -18,7 +21,7 @@
   z-index: 1000;
 }
 
-/* Logo — left side */
+/* LOGO */
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
@@ -26,11 +29,11 @@
   color: white;
 }
 
-/* Desktop links — pushed to the right */
+/* DESKTOP NAV LINKS */
 .links {
   display: flex;
   gap: 1.25rem;
-  margin-left: auto;            /* pushes links all the way to the right */
+  margin-left: auto; /* pushes links and search to the right */
 }
 
 .links a {
@@ -44,36 +47,78 @@
   text-decoration: underline;
 }
 
-/* Hamburger — hidden on desktop */
+/* DESKTOP SEARCH AREA: input and small white button */
+.searchDesktop {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 1rem;
+}
+
+
+.searchDesktop input {
+  
+}
+
+/* small white pill with icon */
+.searchButton {
+  background: white;
+  border: none;
+  width: 40px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.1rem;
+  color: #003366; 
+  font-weight: bold;
+}
+
+
+.mobileSearchIcon {
+  display: none; /* hidden on desktop */
+}
+
+.mobileSearchBar {
+  display: none; /* hidden until opened on mobile */
+}
+
 .hamburger {
-  display: none;
+  display: none; /* hidden on desktop */
   background: none;
   border: none;
   font-size: 2rem;
   color: white;
   cursor: pointer;
-  /* mobile will control alignment */
 }
 
 .mobileMenu {
   display: none;
 }
 
-/* mobile */
+
 @media (max-width: 768px) {
   .navBar {
-    /* more left padding, less right padding */
     padding-left: 1rem;
-    padding-right: 0 ;
+    padding-right: 0;
   }
 
   .links {
+    display: none; /* hide desktop links */
+  }
+
+  /* hide entire desktop search area on mobile */
+  .searchDesktop {
     display: none;
   }
 
   .hamburger {
-    display: block;      /* show hamburger */
-    margin-left: auto;   /* push hamburger to the right */
+    display: block;
+    margin-left: auto; /* pushes hamburger to right edge */
   }
 
   .mobileMenu {
@@ -81,24 +126,61 @@
     top: 60px;
     left: 0;
     right: 0;
-    background: white;
 
     display: flex;
     flex-direction: column;
-
+    background: white;
     border-bottom: 1px solid #eee;
   }
 
   .mobileMenu a {
     padding: 1rem 1.5rem;
-    border-bottom: 1px solid #eee;
     text-decoration: none;
     color: #003366;
+    border-bottom: 1px solid #eee;
     font-size: 1.1rem;
   }
 
   .mobileMenu a:hover {
     background-color: #f5f5f5;
+  }
+
+    /* Mobile search icon button in nav bar */
+  .mobileSearchIcon {
+    display: inline-block;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
+  }
+
+  /* Expanded mobile search area BELOW navbar */
+  .mobileSearchBar {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+
+    background: white;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+
+    z-index: 1001;
+  }
+
+  .mobileSearchCancel {
+    margin-left: auto; /* push to right */
+    border: none;
+    background: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: red;
   }
 }
 
@@ -112,6 +194,7 @@
     margin-left: auto !important;
   }
 }
+
 @media (max-width: 480px) {
   .navBar {
     padding-right: 0 !important;
@@ -119,6 +202,10 @@
 
   .hamburger {
     padding: 0 !important;
-    padding-right: 4px; /* tiny edge spacing */
+    padding-right: 4px;
   }
+}
+/* Hide the extra desktop search button */
+.searchButton button {
+  display: none;
 }

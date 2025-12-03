@@ -1,5 +1,6 @@
 import { Routes, Route, useParams, useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
+
 import BlogPostList from "./REACT_CHALLENGE_1/BlogPostList.jsx";
 import BlogPostDetail from "./REACT_CHALLENGE_1/BlogPostDetail.jsx";
 import BlogPostForm from "./REACT_CHALLENGE_1/BlogPostForm.jsx";
@@ -49,6 +50,22 @@ const initialPosts = [
 
 function App() {
   const [posts, setPosts] = useState(initialPosts);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  function handleSearch(query) {
+    setSearchQuery(query);
+  }
+
+  // Filter posts by title OR content, case-insensitive
+  const normalizedQuery = searchQuery.toLowerCase().trim();
+  const filteredPosts = posts.filter((post) => {
+    if (!normalizedQuery) return true;
+
+    const title = post.title?.toLowerCase() || "";
+    const content = post.content?.toLowerCase() || "";
+
+    return title.includes(normalizedQuery) || content.includes(normalizedQuery);
+  });
 
   // remove post from state
   function handleDeletePost(idToDelete) {
@@ -64,10 +81,9 @@ function App() {
       return <p>Blog post not found.</p>;
     }
 
-    
     function handleDeleteAndNavigate(postId) {
-      handleDeletePost(postId);   // remove from state
-      navigate("/");              // redirect back to list
+      handleDeletePost(postId); // remove from state
+      navigate("/"); // redirect back to list
     }
 
     return (
@@ -100,7 +116,6 @@ function App() {
     function handleCreate(formData) {
       const newId = Date.now().toString();
 
-      
       const plainContent = formData.content.replace(/<[^>]+>/g, "");
       const summary =
         plainContent.length > 100
@@ -197,16 +212,41 @@ function App() {
   }
 
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<BlogPostList posts={posts} />} />
-        <Route path="/posts/new" element={<NewPostRoute />} />
-        <Route path="/posts/:id" element={<BlogPostDetailRoute />} />
-        <Route path="/posts/:id/edit" element={<EditPostRoute />} />
-      </Routes>
-    </Layout>
-  );
+  <Layout onSearch={handleSearch}>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            {/* results  */}
+            {filteredPosts.length === 0 ? (
+              <p>No posts found.</p>
+            ) : (
+              <BlogPostList posts={filteredPosts} />
+            )}
+          </>
+        }
+      />
+      <Route path="/posts/new" element={<NewPostRoute />} />
+      <Route path="/posts/:id" element={<BlogPostDetailRoute />} />
+      <Route path="/posts/:id/edit" element={<EditPostRoute />} />
+    </Routes>
+  </Layout>
+);
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
 

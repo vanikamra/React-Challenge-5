@@ -40,7 +40,7 @@ export default function CommentForm({ onSubmit, isLoggedIn, userName }) {
     setIsSubmitting(false);
     setText(""); // always clear the comment text
 
-    // If user is NOT logged in, also clear the name field
+    // If user is not logged in, also clear the name field
     if (!isLoggedIn) {
       setName("");
     }
@@ -50,7 +50,6 @@ export default function CommentForm({ onSubmit, isLoggedIn, userName }) {
 
   return (
     <section className="comment-form" aria-label="Add a comment">
-      {/* Screen-reader only status message */}
       <div className="comments__sr-status" aria-live="polite">
         {statusMessage}
       </div>
